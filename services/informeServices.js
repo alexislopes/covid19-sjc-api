@@ -6,4 +6,8 @@ async function findAll() {
   return await Informe.find({});
 }
 
-module.exports = { findAll };
+async function create(informe) {
+  return await Informe.create(informe);
+}
+
+module.exports = { findAll, create };
