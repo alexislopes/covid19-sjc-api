@@ -1,13 +1,24 @@
+const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
-mongoose.connect("", { useNewUrlParser: true });
+const keys = require("./config/keys");
+
+const PORT = process.env.PORT || 5000;
 
 require("./models/Informe");
 
-const Informe = mongoose.model("Informe");
+mongoose.connect(keys.mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-async function salva() {
-  return await Informe.insertMany(array);
-}
+const app = express();
 
-salva();
+app.use(bodyParser.json());
+
+require("./routes")(app);
+
+app.listen(PORT, () => {
+  console.log("app is listening on port ", PORT);
+}); //http://localhost:5000
