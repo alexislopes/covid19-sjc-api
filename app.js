@@ -17,7 +17,7 @@ mongoose.connect(keys.mongoURI, {
 const app = express();
 
 app.use(bodyParser.json());
-app.user(cors());
+app.use(cors());
 
 require("./routes")(app);
 
